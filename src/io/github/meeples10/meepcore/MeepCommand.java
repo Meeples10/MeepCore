@@ -22,7 +22,7 @@ public abstract class MeepCommand implements CommandExecutor {
     public abstract boolean run(CommandSender sender, Command cmd, String label, String[] args);
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public final boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!run(sender, cmd, label, args)) {
             sender.sendMessage(getUsage());
         }
