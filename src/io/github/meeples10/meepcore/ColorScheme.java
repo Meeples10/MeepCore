@@ -7,7 +7,7 @@ public class ColorScheme {
     private String name;
     private ChatColor text, highlight, error, errorText, warning, warningText;
 
-    protected ColorScheme(String name, ChatColor text, ChatColor highlight, ChatColor error, ChatColor errorText,
+    public ColorScheme(String name, ChatColor text, ChatColor highlight, ChatColor error, ChatColor errorText,
             ChatColor warning, ChatColor warningText) {
         this.name = name;
         this.text = text;
