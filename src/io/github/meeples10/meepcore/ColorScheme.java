@@ -66,4 +66,27 @@ public class ColorScheme {
     public ChatColor warningText() {
         return warningText;
     }
+
+    /**
+     * @param s
+     *            The string to format
+     * @return The string formatted with chat colors determined by the color
+     *         scheme.<br>
+     *         <strong>$t</strong>&nbsp;&nbsp;&nbsp;- text<br>
+     *         <strong>$hl</strong>&nbsp;&nbsp;- highlight<br>
+     *         <strong>$e</strong>&nbsp;&nbsp;&nbsp;- error<br>
+     *         <strong>$et</strong>&nbsp;&nbsp;- error text<br>
+     *         <strong>$w</strong>&nbsp;&nbsp;&nbsp;- warning<br>
+     *         <strong>$wt</strong>&nbsp;&nbsp;- warning text<br>
+     */
+    public String format(String s) {
+        return format(s, "$t", "$hl", "$e", "$et", "$w", "$wt");
+    }
+
+    private String format(String s, String text, String highlight, String error, String errorText, String warning,
+            String warningText) {
+        return s.replace(text, this.text + "").replace(highlight, this.highlight + "")
+                .replace(errorText, this.errorText + "").replace(error, this.error + "")
+                .replace(warningText, this.warningText + "").replace(warning, this.warning + "");
+    }
 }

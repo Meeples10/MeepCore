@@ -73,15 +73,26 @@ public class Messages {
      *         <strong>$et</strong>&nbsp;&nbsp;- error text<br>
      *         <strong>$w</strong>&nbsp;&nbsp;&nbsp;- warning<br>
      *         <strong>$wt</strong>&nbsp;&nbsp;- warning text<br>
+     * @see ColorScheme#format(String)
      */
     public static String format(String s) {
-        return format(s, "$t", "$hl", "$e", "$et", "$w", "$wt");
+        return Main.getColorScheme().format(s);
     }
 
+    /**
+     * @deprecated Since 1.2.3
+     * @see #format(String)
+     */
+    @Deprecated
     public static String format(String s, String text, String highlight) {
         return s.replace(text, Main.getColorScheme().t() + "").replace(highlight, Main.getColorScheme().hl() + "");
     }
 
+    /**
+     * @deprecated Since 1.2.3
+     * @see #format(String)
+     */
+    @Deprecated
     public static String format(String s, String text, String highlight, String error, String errorText, String warning,
             String warningText) {
         return s.replace(text, Main.getColorScheme().t() + "").replace(highlight, Main.getColorScheme().hl() + "")

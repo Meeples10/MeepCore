@@ -90,12 +90,22 @@ public class Main extends JavaPlugin {
         return true;
     }
 
+    /**
+     * @deprecated Since 1.2.3
+     */
+    @Deprecated
     protected static void broadcast(String s, boolean l) {
         for(Player p : Bukkit.getServer().getOnlinePlayers()) {
             p.sendMessage(s);
         }
         if(l) {
             System.out.println(s);
+        }
+    }
+
+    protected static void broadcast(String s) {
+        for(Player p : Bukkit.getServer().getOnlinePlayers()) {
+            p.sendMessage(s);
         }
     }
 
@@ -147,26 +157,24 @@ public class Main extends JavaPlugin {
     }
 
     protected static String getHelp() {
-        return sc.t() + "" + ChatColor.STRIKETHROUGH + "-----------" + sc.hl() + " MeepCore Help " + sc.t() + ""
-                + ChatColor.STRIKETHROUGH + "-------------\n" + sc.hl() + "/meepcore reload" + sc.t()
-                + ": Reloads the plugin's configuration files\n" + sc.hl() + "/meepcore debug" + sc.t()
-                + ": Shows debug information for the plugin\n" + sc.hl() + "/meepcore help" + sc.t()
-                + ": Shows this message\n" + sc.t() + "" + ChatColor.STRIKETHROUGH
-                + "-------------------------------------";
+        return sc.format("$t" + ChatColor.STRIKETHROUGH + "-----------$hl" + " MeepCore Help $t"
+                + ChatColor.STRIKETHROUGH + "-------------\n$hl" + "/meepcore reload$t"
+                + ": Reloads the plugin's configuration files\n$hl" + "/meepcore debug$t"
+                + ": Shows debug information for the plugin\n$hl" + "/meepcore help$t" + ": Shows this message\n$t"
+                + ChatColor.STRIKETHROUGH + "-------------------------------------");
     }
 
     protected static String getDebug() {
-        return sc.t() + "" + ChatColor.STRIKETHROUGH + "--------------------" + sc.hl() + " Debug " + sc.t() + ""
-                + ChatColor.STRIKETHROUGH + "--------------------\n" + sc.t() + "Color scheme: " + sc.hl()
-                + sc.getName() + "\n" + sc.t() + "No permission message: \n> " + noPermissionMessage() + "\n" + sc.t()
-                + "Error message: \n> " + formatError("%s") + "\n" + sc.t() + "Warning message: \n> "
-                + formatWarning("%s") + "\n" + sc.t() + "Usage message: \n> " + getUsage("%s") + "\n" + sc.t()
-                + "Invalid arguments message: \n> " + getInvalidArgumentsMessage() + "\n" + sc.t()
-                + "Invalid argument message: \n> " + getInvalidArgumentMessage("%s") + "\n" + sc.t()
-                + "Invalid argument count message: \n> " + getInvalidArgumentCountMessage() + "\n" + sc.t()
-                + "Players only message: \n> " + getPlayersOnlyMessage() + "\n" + sc.t() + "Reload message 1: \n> "
-                + getReloadMessage(0) + "\n" + sc.t() + "Reload message 2: \n> " + getReloadMessage(1) + "\n" + sc.t()
-                + "Reload message 3: \n> " + getReloadMessage(2) + "\n" + sc.t() + "" + ChatColor.STRIKETHROUGH
-                + "-----------------------------------------------";
+        return sc.format("$t" + ChatColor.STRIKETHROUGH + "--------------------$hl" + " Debug $t"
+                + ChatColor.STRIKETHROUGH + "--------------------\n$t" + "Color scheme: $hl" + sc.getName() + "\n$t"
+                + "No permission message: \n> " + noPermissionMessage() + "\n$t" + "Error message: \n> "
+                + formatError("%s") + "\n$t" + "Warning message: \n> " + formatWarning("%s") + "\n$t"
+                + "Usage message: \n> " + getUsage("%s") + "\n$t" + "Invalid arguments message: \n> "
+                + getInvalidArgumentsMessage() + "\n$t" + "Invalid argument message: \n> "
+                + getInvalidArgumentMessage("%s") + "\n$t" + "Invalid argument count message: \n> "
+                + getInvalidArgumentCountMessage() + "\n$t" + "Players only message: \n> " + getPlayersOnlyMessage()
+                + "\n$t" + "Reload message 1: \n> " + getReloadMessage(0) + "\n$t" + "Reload message 2: \n> "
+                + getReloadMessage(1) + "\n$t" + "Reload message 3: \n> " + getReloadMessage(2) + "\n$t"
+                + ChatColor.STRIKETHROUGH + "-----------------------------------------------");
     }
 }

@@ -23,9 +23,22 @@ public class FileUtils {
      * @return The lines of the file, joined by '\n'
      * @deprecated Since 1.1.4, see {@link #read(File)}
      */
+    @Deprecated
     public static String loadFile(File directory, String name) throws FileNotFoundException, IOException {
         File f = new File(directory, name);
         return ChatColor.translateAlternateColorCodes('&', String.join("\n", FileUtils.readLines(f)));
+    }
+
+    /**
+     * @deprecated Since 1.2.3
+     * @param file
+     *            The output file
+     * @param data
+     *            The string to write to the file
+     * @see #write(File, String)
+     */
+    public static void writeFile(File file, String data) throws IOException {
+        write(file, data);
     }
 
     /**
@@ -34,7 +47,7 @@ public class FileUtils {
      * @param data
      *            The string to write to the file
      */
-    public static void writeFile(File file, String data) throws IOException {
+    public static void write(File file, String data) throws IOException {
         FileWriter out = null;
         try {
             out = new FileWriter(file);
@@ -42,10 +55,10 @@ public class FileUtils {
         } catch(IOException e) {
             throw new IOException(e);
         } finally {
-            if(out != null) try {
-                out.close();
-            } catch(IOException ignore) {
-            }
+            if(out != null)
+                try {
+                    out.close();
+                } catch(IOException ignore) {}
         }
     }
 
