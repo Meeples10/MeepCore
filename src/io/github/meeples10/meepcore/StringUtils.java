@@ -32,4 +32,19 @@ public class StringUtils {
     public static String removeSpecial(String input) {
         return replaceSpecial(input, "");
     }
+
+    /**
+     * @param s
+     *            The input string
+     * @param amount
+     *            The amount of times to duplicate the string
+     * @return The input string duplicated the specified amount of times
+     */
+    public static String multiply(String s, int amount) {
+        String out = s;
+        for(int i = 0; i < amount; i++) {
+            out += s;
+        }
+        return out;
+    }
 }

@@ -1,6 +1,6 @@
 name: MeepCore
 main: io.github.meeples10.meepcore.Main
-version: 1.2.3
+version: 1.2.4
 author: Meeples10
 description: API for Meeples10's plugins.
 commands:
