@@ -30,7 +30,7 @@ public class Main extends JavaPlugin {
         log = Bukkit.getServer().getPluginManager().getPlugin(NAME).getLogger();
         loadConfig();
         loadMessages();
-        this.getCommand("meepcore").setExecutor(new CommandMain());
+        this.getCommand("meepcore").setExecutor(new CommandMain("/meepcore"));
     }
 
     public static boolean loadConfig() {
