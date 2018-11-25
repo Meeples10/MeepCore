@@ -99,7 +99,7 @@ public class Main extends JavaPlugin {
             p.sendMessage(s);
         }
         if(l) {
-            System.out.println(s);
+            log.info(s);
         }
     }
 
