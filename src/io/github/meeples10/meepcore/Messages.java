@@ -80,12 +80,14 @@ public class Messages {
      *            The string to format
      * @return The string formatted with chat colors determined by the plugin's
      *         current color scheme.<br>
+     *         <code>
      *         <strong>$t</strong>&nbsp;&nbsp;&nbsp;- text<br>
      *         <strong>$hl</strong>&nbsp;&nbsp;- highlight<br>
      *         <strong>$e</strong>&nbsp;&nbsp;&nbsp;- error<br>
      *         <strong>$et</strong>&nbsp;&nbsp;- error text<br>
      *         <strong>$w</strong>&nbsp;&nbsp;&nbsp;- warning<br>
      *         <strong>$wt</strong>&nbsp;&nbsp;- warning text<br>
+     *         </code>
      * @see ColorScheme#format(String)
      * @see #format(String, Object...)
      */
