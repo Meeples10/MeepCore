@@ -74,7 +74,7 @@ public class Messages {
      *         <strong>$w</strong>&nbsp;&nbsp;&nbsp;- warning<br>
      *         <strong>$wt</strong>&nbsp;&nbsp;- warning text<br>
      * @see ColorScheme#format(String)
-     * @see Messages#format(String, Object...)
+     * @see #format(String, Object...)
      */
     public static String format(String s) {
         return Main.getColorScheme().format(s);
@@ -86,7 +86,7 @@ public class Messages {
      * @param args
      *            The objects to format the string with
      * @return The formatted string
-     * @see Messages#format(String)
+     * @see #format(String)
      * @see String#format(String, Object...)
      */
     public static String format(String s, Object... args) {
