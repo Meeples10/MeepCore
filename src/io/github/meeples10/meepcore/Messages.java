@@ -27,9 +27,22 @@ public class Messages {
      * @param state
      *            0 for attempt, 1 for success, 2 for failure
      * @return The formatted message
+     * @see #reloadMessage(String, boolean)
      */
     public static String reloadMessage(String name, int state) {
         return String.format(Main.getReloadMessage(state), name);
+    }
+
+    /**
+     * @param name
+     *            The name of the plugin
+     * @param success
+     *            The success state of the reload method
+     * @return The formatted message
+     * @see #reloadMessage(String, int)
+     */
+    public static String reloadMessage(String name, boolean success) {
+        return reloadMessage(name, success ? 1 : 2);
     }
 
     /**
