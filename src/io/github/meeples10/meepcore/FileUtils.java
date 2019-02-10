@@ -12,35 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import net.md_5.bungee.api.ChatColor;
-
 public class FileUtils {
-    /**
-     * @param directory
-     *            The directory the file is in
-     * @param name
-     *            The name of the file, including the extension
-     * @return The lines of the file, joined by '\n'
-     * @deprecated Since 1.1.4, see {@link #read(File)}
-     */
-    @Deprecated
-    public static String loadFile(File directory, String name) throws FileNotFoundException, IOException {
-        File f = new File(directory, name);
-        return ChatColor.translateAlternateColorCodes('&', String.join("\n", FileUtils.readLines(f)));
-    }
-
-    /**
-     * @deprecated Since 1.2.3
-     * @param file
-     *            The output file
-     * @param data
-     *            The string to write to the file
-     * @see #write(File, String)
-     */
-    public static void writeFile(File file, String data) throws IOException {
-        write(file, data);
-    }
-
     /**
      * @param file
      *            The output file
@@ -55,31 +27,10 @@ public class FileUtils {
         } catch(IOException e) {
             throw new IOException(e);
         } finally {
-            if(out != null)
-                try {
-                    out.close();
-                } catch(IOException ignore) {}
+            if(out != null) try {
+                out.close();
+            } catch(IOException ignore) {}
         }
-    }
-
-    /**
-     * @param file
-     *            The input file
-     * @return The lines of the file
-     * @deprecated Since 1.1.4, replaced by {@link #read(File)}
-     */
-    @Deprecated
-    public static String[] readLines(File file) throws FileNotFoundException, IOException {
-        ArrayList<String> data = new ArrayList<String>();
-        BufferedReader in = new BufferedReader(new FileReader(file));
-        String line;
-        while((line = in.readLine()) != null) {
-            data.add(line);
-        }
-        in.close();
-        String[] output = data.toArray(new String[data.size()]);
-
-        return output;
     }
 
     /**

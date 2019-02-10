@@ -107,27 +107,4 @@ public class Messages {
     public static String format(String s, Object... args) {
         return format(String.format(s, args));
     }
-
-    /**
-     * @deprecated Since 1.2.3
-     * @see #format(String)
-     */
-    @Deprecated
-    public static String format(String s, String text, String highlight) {
-        return s.replace(text, Main.getColorScheme().t() + "").replace(highlight, Main.getColorScheme().hl() + "");
-    }
-
-    /**
-     * @deprecated Since 1.2.3
-     * @see #format(String)
-     */
-    @Deprecated
-    public static String format(String s, String text, String highlight, String error, String errorText, String warning,
-            String warningText) {
-        return s.replace(text, Main.getColorScheme().t() + "").replace(highlight, Main.getColorScheme().hl() + "")
-                .replace(errorText, Main.getColorScheme().errorText() + "")
-                .replace(error, Main.getColorScheme().error() + "")
-                .replace(warningText, Main.getColorScheme().warningText() + "")
-                .replace(warning, Main.getColorScheme().warning() + "");
-    }
 }

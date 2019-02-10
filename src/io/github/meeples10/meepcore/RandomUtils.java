@@ -42,13 +42,4 @@ public class RandomUtils {
     public static float randFloat() {
         return ThreadLocalRandom.current().nextFloat();
     }
-
-    /**
-     * @param array
-     *            An array of objects
-     * @return A random object from the array
-     */
-    public static Object randObject(Object[] array) {
-        return array[randInt(0, array.length - 1)];
-    }
 }
