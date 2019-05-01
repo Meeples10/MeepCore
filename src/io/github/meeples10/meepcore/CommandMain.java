@@ -20,6 +20,8 @@ public class CommandMain extends MeepCommand {
                     sender.sendMessage(Main.getDebug());
                 } else if(args[0].equalsIgnoreCase("help")) {
                     sender.sendMessage(Main.getHelp());
+                } else if(args[0].equalsIgnoreCase("suite")) {
+                    sender.sendMessage(Main.getSuite());
                 } else {
                     return false;
                 }

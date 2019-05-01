@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.md_5.bungee.api.ChatColor;
@@ -160,8 +161,9 @@ public class Main extends JavaPlugin {
         return sc.format("$t" + ChatColor.STRIKETHROUGH + "-----------$hl" + " MeepCore Help $t"
                 + ChatColor.STRIKETHROUGH + "-------------\n$hl" + "/meepcore reload$t"
                 + ": Reloads the plugin's configuration files\n$hl" + "/meepcore debug$t"
-                + ": Shows debug information for the plugin\n$hl" + "/meepcore help$t" + ": Shows this message\n$t"
-                + ChatColor.STRIKETHROUGH + "-------------------------------------");
+                + ": Shows debug information for the plugin\n$hl" + "/meepcore suite$t"
+                + ": Lists installed plugins with " + NAME + " as a dependency\n$hl" + "/meepcore help$t"
+                + ": Shows this message\n$t" + ChatColor.STRIKETHROUGH + "-------------------------------------");
     }
 
     protected static String getDebug() {
@@ -176,5 +178,17 @@ public class Main extends JavaPlugin {
                 + "\n$t" + "Reload message 1: \n> " + getReloadMessage(0) + "\n$t" + "Reload message 2: \n> "
                 + getReloadMessage(1) + "\n$t" + "Reload message 3: \n> " + getReloadMessage(2) + "\n$t"
                 + ChatColor.STRIKETHROUGH + "-----------------------------------------------");
+    }
+
+    protected static String getSuite() {
+        String s = "";
+        for(Plugin p : Bukkit.getServer().getPluginManager().getPlugins()) {
+            if(p.getDescription().getDepend().contains(NAME)) {
+                s += ", " + (p.isEnabled() ? "$hl" : "$e") + p.getName() + " " + p.getDescription().getVersion() + "$t";
+            }
+        }
+        return sc.format("$t" + ChatColor.STRIKETHROUGH + "--------------- $hlMeep Plugin Suite $t"
+                + ChatColor.STRIKETHROUGH + "---------------\n" + s.substring(2) + "\n$t" + ChatColor.STRIKETHROUGH
+                + "-------------------------------------------------");
     }
 }
