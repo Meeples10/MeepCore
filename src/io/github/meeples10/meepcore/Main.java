@@ -184,11 +184,12 @@ public class Main extends JavaPlugin {
         String s = "";
         for(Plugin p : Bukkit.getServer().getPluginManager().getPlugins()) {
             if(p.getDescription().getDepend().contains(NAME)) {
-                s += ", " + (p.isEnabled() ? "$hl" : "$e") + p.getName() + " " + p.getDescription().getVersion() + "$t";
+                s += "\n$t- " + (p.isEnabled() ? "$hl" : "$e") + p.getName() + " $w[" + p.getDescription().getVersion()
+                        + "]";
             }
         }
-        return sc.format("$t" + ChatColor.STRIKETHROUGH + "--------------- $hlMeep Plugin Suite $t"
-                + ChatColor.STRIKETHROUGH + "---------------\n" + s.substring(2) + "\n$t" + ChatColor.STRIKETHROUGH
+        return sc.format("$t" + ChatColor.STRIKETHROUGH + "----------------$hl Meep Plugin Suite $t"
+                + ChatColor.STRIKETHROUGH + "----------------\n" + s.trim() + "\n$t" + ChatColor.STRIKETHROUGH
                 + "-------------------------------------------------");
     }
 }
