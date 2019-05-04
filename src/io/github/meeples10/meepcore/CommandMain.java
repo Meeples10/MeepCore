@@ -14,7 +14,7 @@ public class CommandMain extends MeepCommand {
         if(sender.hasPermission("meepcore.use")) {
             if(args.length > 0) {
                 if(args[0].equalsIgnoreCase("reload")) {
-                    sender.sendMessage(Messages.reloadMessage(Main.NAME, 0));
+                    sender.sendMessage(Messages.reloadAttempt(Main.NAME));
                     sender.sendMessage(Messages.reloadMessage(Main.NAME, Main.loadConfig()));
                 } else if(args[0].equalsIgnoreCase("debug")) {
                     sender.sendMessage(Main.getDebug());
