@@ -22,6 +22,7 @@ public class Messages {
     }
 
     /**
+     * @deprecated Since 1.3.3
      * @param name
      *            The name of the plugin
      * @param state
@@ -29,8 +30,18 @@ public class Messages {
      * @return The formatted message
      * @see #reloadMessage(String, boolean)
      */
+    @Deprecated
     public static String reloadMessage(String name, int state) {
         return String.format(Main.getReloadMessage(state), name);
+    }
+
+    /**
+     * @param name
+     *            The name of the plugin
+     * @see #reloadMessage(String, boolean)
+     */
+    public static String reloadAttempt(String name) {
+        return String.format(Main.getReloadMessage(0), name);
     }
 
     /**
@@ -39,10 +50,10 @@ public class Messages {
      * @param success
      *            The success state of the reload method
      * @return The formatted message
-     * @see #reloadMessage(String, int)
+     * @see #reloadMessage(String)
      */
     public static String reloadMessage(String name, boolean success) {
-        return reloadMessage(name, success ? 1 : 2);
+        return String.format(Main.getReloadMessage(success ? 1 : 2), name);
     }
 
     /**
