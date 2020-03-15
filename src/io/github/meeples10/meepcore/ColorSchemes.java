@@ -1,6 +1,6 @@
 package io.github.meeples10.meepcore;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 class ColorSchemes {
     static final ColorScheme DEFAULT = new ColorScheme("DEFAULT", ChatColor.WHITE, ChatColor.GREEN, ChatColor.RED,

@@ -1,6 +1,6 @@
 package io.github.meeples10.meepcore;
 
-import net.md_5.bungee.api.ChatColor;
+import org.bukkit.ChatColor;
 
 public class ColorScheme {
 
