@@ -1,0 +1,10 @@
+name: MeepCore
+main: io.github.meeples10.meepcore.Main
+version: %PROJECT_VERSION%
+author: Meeples10
+description: %PROJECT_DESCRIPTION%
+api-version: 1.15
+commands:
+  meepcore:
+    description: Base command for MeepCore
+    usage: /meepcore
