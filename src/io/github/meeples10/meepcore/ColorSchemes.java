@@ -13,4 +13,7 @@ class ColorSchemes {
      */
     static final ColorScheme ESSENTIALS = new ColorScheme("ESSENTIALS", ChatColor.GOLD, ChatColor.RED, ChatColor.RED,
             ChatColor.DARK_RED, ChatColor.RED, ChatColor.GOLD);
+
+    static final ColorScheme MUTED = new ColorScheme("MUTED", ChatColor.GRAY, ChatColor.DARK_AQUA, ChatColor.RED,
+            ChatColor.GRAY, ChatColor.YELLOW, ChatColor.GRAY);
 }

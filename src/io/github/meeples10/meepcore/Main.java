@@ -53,6 +53,9 @@ public class Main extends JavaPlugin {
         case 1:
             sc = ColorSchemes.ESSENTIALS;
             break;
+        case 2:
+            sc = ColorSchemes.MUTED;
+            break;
         default:
             sc = ColorSchemes.DEFAULT;
             break;

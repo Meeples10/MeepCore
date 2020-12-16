@@ -1,4 +1,5 @@
 # The color scheme of MeepCore and the plugins that depend on it
 # 0 for MeepCore style
 # 1 for Essentials style
+# 2 for muted style
 color-scheme: 0
