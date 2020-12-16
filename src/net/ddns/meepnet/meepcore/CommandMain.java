@@ -1,4 +1,4 @@
-package io.github.meeples10.meepcore;
+package net.ddns.meepnet.meepcore;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

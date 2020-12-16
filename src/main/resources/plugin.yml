@@ -1,5 +1,5 @@
 name: MeepCore
-main: io.github.meeples10.meepcore.Main
+main: net.ddns.meepnet.meepcore.Main
 version: %PROJECT_VERSION%
 author: Meeples10
 description: %PROJECT_DESCRIPTION%

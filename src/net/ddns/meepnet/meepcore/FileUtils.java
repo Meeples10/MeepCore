@@ -1,4 +1,4 @@
-package io.github.meeples10.meepcore;
+package net.ddns.meepnet.meepcore;
 
 import java.io.BufferedReader;
 import java.io.File;
