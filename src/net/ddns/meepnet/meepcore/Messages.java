@@ -313,7 +313,7 @@ public class Messages {
      * @see #format(String)
      */
     public static String translate(CommandSender sender, String key) {
-        return format(String.format(translateUnformatted(LocalizationUtils.getLocale(sender), key)));
+        return LocalizationUtils.getTranslation(LocalizationUtils.getLocale(sender), key);
     }
 
     /**
@@ -325,15 +325,6 @@ public class Messages {
      * @see #format(String, Object...)
      */
     public static String translate(CommandSender sender, String key, Object... args) {
-        return format(translateUnformatted(LocalizationUtils.getLocale(sender), key), args);
-    }
-
-    /**
-     * @param key
-     *                The translation key
-     * @return The raw translation string with no formatting applied
-     */
-    public static String translateUnformatted(CommandSender sender, String key) {
-        return LocalizationUtils.getTranslation(LocalizationUtils.getLocale(sender), key);
+        return String.format(translate(sender, key), args);
     }
 }
