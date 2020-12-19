@@ -5,19 +5,20 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class FileUtils {
     /**
      * @param file
-     *            The output file
+     *                 The output file
      * @param data
-     *            The string to write to the file
+     *                 The string to write to the file
      */
     public static void write(File file, String data) throws IOException {
         FileWriter out = null;
@@ -35,12 +36,13 @@ public class FileUtils {
 
     /**
      * @param file
-     *            The input file
+     *                 The input file
      * @return The lines of the file
      */
     public static ArrayList<String> read(File file) throws FileNotFoundException, IOException {
         ArrayList<String> data = new ArrayList<String>();
-        BufferedReader in = new BufferedReader(new FileReader(file));
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
         String line;
         while((line = in.readLine()) != null) {
             data.add(line);
@@ -51,9 +53,9 @@ public class FileUtils {
 
     /**
      * @param path
-     *            The path to the file
+     *                 The path to the file
      * @param obj
-     *            The object to write to the file
+     *                 The object to write to the file
      */
     public static void writeBinaryFile(String path, Object obj) throws FileNotFoundException, IOException {
         FileOutputStream out = new FileOutputStream(path);
@@ -64,7 +66,7 @@ public class FileUtils {
 
     /**
      * @param path
-     *            The path to the file
+     *                 The path to the file
      * @return The object stored in the file
      */
     public static Object readBinaryFile(String path) throws FileNotFoundException, IOException, ClassNotFoundException {

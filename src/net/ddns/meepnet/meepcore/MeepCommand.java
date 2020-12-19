@@ -5,18 +5,25 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 public abstract class MeepCommand implements CommandExecutor {
-    private String usage;
+    private String usageKey;
 
-    public MeepCommand(String usage) {
-        this.usage = usage;
+    public MeepCommand(String usageKey) {
+        this.usageKey = usageKey;
     }
 
+    /**
+     * @deprecated Since 1.4.0
+     */
     public String getUsage() {
-        return Messages.usage(usage);
+        return Messages.usage(usageKey);
+    }
+
+    public String getUsage(CommandSender sender) {
+        return Messages.usage(sender, Messages.translate(sender, usageKey));
     }
 
     public String getUsageRaw() {
-        return usage;
+        return usageKey;
     }
 
     public abstract boolean run(CommandSender sender, Command cmd, String label, String[] args);
@@ -24,7 +31,7 @@ public abstract class MeepCommand implements CommandExecutor {
     @Override
     public final boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!run(sender, cmd, label, args)) {
-            sender.sendMessage(getUsage());
+            sender.sendMessage(getUsage(sender));
         }
         return true;
     }

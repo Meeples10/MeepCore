@@ -15,21 +15,21 @@ public class Main extends JavaPlugin {
 
     protected static final String NAME = "MeepCore";
 
-    private static File df, cfg, msg;
-    private static Logger log;
-    private static String errorPrefix, noPermissionMessage, reloadMessageAttempt, reloadMessageSuccess,
-            reloadMessageFail, usagePrefix, invalidArguments, invalidArgument, invalidArgumentCount, playersOnlyMessage,
-            warningPrefix;
+    private static File df, cfg;
+    protected static Logger log;
     private static ColorScheme sc;
 
     @Override
     public void onEnable() {
         df = Bukkit.getServer().getPluginManager().getPlugin(NAME).getDataFolder();
         cfg = new File(df, "config.yml");
-        msg = new File(df, "messages.yml");
         log = Bukkit.getServer().getPluginManager().getPlugin(NAME).getLogger();
         loadConfig();
-        loadMessages();
+        try {
+            LocalizationUtils.loadMessages(NAME);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
         this.getCommand("meepcore").setExecutor(new CommandMain("/meepcore"));
     }
 
@@ -60,36 +60,7 @@ public class Main extends JavaPlugin {
             sc = ColorSchemes.DEFAULT;
             break;
         }
-        return true;
-    }
-
-    public static boolean loadMessages() {
-        try {
-            if(!df.exists()) {
-                df.mkdirs();
-            }
-            if(!msg.exists()) {
-                log.info("Messages not found, creating messages.yml");
-                Bukkit.getServer().getPluginManager().getPlugin(NAME).saveResource("messages.yml", false);
-            } else {
-                log.info("Messages found, loading messages.yml");
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        FileConfiguration c = YamlConfiguration.loadConfiguration(msg);
-        errorPrefix = c.getString("error-prefix");
-        noPermissionMessage = c.getString("errors.no-permission");
-        reloadMessageAttempt = c.getString("reload.attempt");
-        reloadMessageSuccess = c.getString("reload.success");
-        reloadMessageFail = c.getString("reload.failure");
-        usagePrefix = c.getString("usage-prefix");
-        invalidArguments = c.getString("errors.arguments.generic");
-        invalidArgument = c.getString("errors.arguments.invalid");
-        invalidArgumentCount = c.getString("errors.arguments.invalid-count");
-        playersOnlyMessage = c.getString("errors.players-only");
-        warningPrefix = c.getString("warning-prefix");
+        LocalizationUtils.setFallbackLocale(c.getString("fallback-locale").toLowerCase());
         return true;
     }
 
@@ -112,77 +83,99 @@ public class Main extends JavaPlugin {
         }
     }
 
-    protected static String noPermissionMessage() {
-        return formatError(noPermissionMessage);
-    }
-
-    protected static String formatError(String s) {
-        return sc.error() + errorPrefix + sc.errorText() + s;
-    }
-
-    protected static String formatWarning(String s) {
-        return sc.warning() + warningPrefix + sc.warningText() + s;
-    }
-
-    protected static String getReloadMessage(int i) {
-        switch(i) {
-        case 0:
-            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] " + reloadMessageAttempt;
-        case 1:
-            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] " + reloadMessageSuccess;
-        default:
-            return sc.t() + "[" + sc.error() + "%s" + sc.t() + "] " + sc.errorText() + reloadMessageFail;
+    protected static void broadcast(String s, String permission) {
+        for(Player p : Bukkit.getServer().getOnlinePlayers()) {
+            if(p.hasPermission(permission)) p.sendMessage(s);
         }
     }
 
-    protected static String getUsage(String usage) {
-        return sc.error() + usagePrefix + sc.errorText() + usage;
+    protected static String noPermissionMessage(String locale) {
+        return formatError(locale, LocalizationUtils.getTranslation(locale, "error.no-permission"));
     }
 
-    protected static String getInvalidArgumentsMessage() {
-        return formatError(invalidArguments);
+    protected static String formatError(String locale, String s) {
+        return sc.error() + LocalizationUtils.getTranslation(locale, "error.prefix") + sc.errorText() + s;
     }
 
-    protected static String getInvalidArgumentMessage(Object o) {
-        return formatError(String.format(invalidArgument, o));
+    protected static String formatWarning(String locale, String s) {
+        return sc.warning() + LocalizationUtils.getTranslation(locale, "warning.prefix") + sc.warningText() + s;
     }
 
-    protected static String getInvalidArgumentCountMessage() {
-        return formatError(invalidArgumentCount);
+    protected static String getReloadMessage(String locale, int i) {
+        switch(i) {
+        case 0:
+            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] "
+                    + LocalizationUtils.getTranslation(locale, "reload.attempt");
+        case 1:
+            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] "
+                    + LocalizationUtils.getTranslation(locale, "reload.success");
+        default:
+            return sc.t() + "[" + sc.error() + "%s" + sc.t() + "] " + sc.errorText()
+                    + LocalizationUtils.getTranslation(locale, "reload.failure");
+        }
     }
 
-    protected static String getPlayersOnlyMessage() {
-        return formatError(playersOnlyMessage);
+    protected static String getUsage(String locale, String usage) {
+        return sc.error() + LocalizationUtils.getTranslation(locale, "usage.prefix") + sc.errorText() + usage;
+    }
+
+    protected static String getInvalidArgumentsMessage(String locale) {
+        return formatError(locale, LocalizationUtils.getTranslation(locale, "error.arguments.generic"));
+    }
+
+    protected static String getInvalidArgumentMessage(String locale, Object o) {
+        return formatError(locale,
+                String.format(LocalizationUtils.getTranslation(locale, "error.arguments.invalid"), o));
+    }
+
+    protected static String getInvalidArgumentCountMessage(String locale) {
+        return formatError(locale, LocalizationUtils.getTranslation(locale, "error.arguments.invalid-count"));
+    }
+
+    protected static String getPlayersOnlyMessage(String locale) {
+        return formatError(locale, LocalizationUtils.getTranslation(locale, "error.players-only"));
     }
 
     protected static ColorScheme getColorScheme() {
         return sc;
     }
 
-    protected static String getHelp() {
-        return sc.format("$t" + ChatColor.STRIKETHROUGH + "-----------$hl" + " MeepCore Help $t"
-                + ChatColor.STRIKETHROUGH + "-------------\n$hl" + "/meepcore reload$t"
-                + ": Reloads the plugin's configuration files\n$hl" + "/meepcore debug$t"
-                + ": Shows debug information for the plugin\n$hl" + "/meepcore suite$t"
-                + ": Lists installed plugins with " + NAME + " as a dependency\n$hl" + "/meepcore help$t"
-                + ": Shows this message\n$t" + ChatColor.STRIKETHROUGH + "-------------------------------------");
+    protected static String getHelp(String locale) {
+        return sc.format("$t" + ChatColor.STRIKETHROUGH + "-----------$hl" + " "
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.help.header") + " $t"
+                + ChatColor.STRIKETHROUGH + "-------------\n$hl" + "/meepcore reload$t" + ": "
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.help.reload") + "\n$hl"
+                + "/meepcore debug$t" + ": " + LocalizationUtils.getTranslation(locale, "command.meepcore.help.debug")
+                + "\n$hl" + "/meepcore suite$t" + ": "
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.help.suite") + "\n$hl"
+                + "/meepcore locales$t" + ": "
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.help.locales") + "\n$hl"
+                + "/meepcore help$t" + ": " + LocalizationUtils.getTranslation(locale, "command.meepcore.help.help")
+                + "\n$t" + ChatColor.STRIKETHROUGH + "-------------------------------------");
     }
 
-    protected static String getDebug() {
-        return sc.format("$t" + ChatColor.STRIKETHROUGH + "--------------------$hl" + " Debug $t"
-                + ChatColor.STRIKETHROUGH + "--------------------\n$t" + "Color scheme: $hl" + sc.getName() + "\n$t"
-                + "No permission message: \n> " + noPermissionMessage() + "\n$t" + "Error message: \n> "
-                + formatError("%s") + "\n$t" + "Warning message: \n> " + formatWarning("%s") + "\n$t"
-                + "Usage message: \n> " + getUsage("%s") + "\n$t" + "Invalid arguments message: \n> "
-                + getInvalidArgumentsMessage() + "\n$t" + "Invalid argument message: \n> "
-                + getInvalidArgumentMessage("%s") + "\n$t" + "Invalid argument count message: \n> "
-                + getInvalidArgumentCountMessage() + "\n$t" + "Players only message: \n> " + getPlayersOnlyMessage()
-                + "\n$t" + "Reload message 1: \n> " + getReloadMessage(0) + "\n$t" + "Reload message 2: \n> "
-                + getReloadMessage(1) + "\n$t" + "Reload message 3: \n> " + getReloadMessage(2) + "\n$t"
-                + ChatColor.STRIKETHROUGH + "-----------------------------------------------");
+    protected static String getDebug(String locale) {
+        return sc.format("$t" + ChatColor.STRIKETHROUGH + "--------------------$hl" + " "
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.debug.header") + " $t"
+                + ChatColor.STRIKETHROUGH + "--------------------\n$t"
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.debug.color-scheme") + ": $hl"
+                + sc.getName() + "\n$t"
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.debug.fallback-locale") + ": $hl"
+                + LocalizationUtils.getFallbackLocale() + "\n$t" + "No permission message: \n> "
+                + noPermissionMessage(locale) + "\n$t" + "Error message: \n> " + formatError(locale, "%s") + "\n$t"
+                + "Warning message: \n> " + formatWarning(locale, "%s") + "\n$t" + "Usage message: \n> "
+                + getUsage(locale, "%s") + "\n$t" + "Invalid arguments message: \n> "
+                + getInvalidArgumentsMessage(locale) + "\n$t" + "Invalid argument message: \n> "
+                + getInvalidArgumentMessage(locale, "%s") + "\n$t" + "Invalid argument count message: \n> "
+                + getInvalidArgumentCountMessage(locale) + "\n$t" + "Players only message: \n> "
+                + getPlayersOnlyMessage(locale) + "\n$t" + "Reload message 1: \n> " + getReloadMessage(locale, 0)
+                + "\n$t" + "Reload message 2: \n> " + getReloadMessage(locale, 1) + "\n$t" + "Reload message 3: \n> "
+                + getReloadMessage(locale, 2) + "\n$t" + "Missing translation: \n> "
+                + LocalizationUtils.getTranslation(locale, "missing-translation") + "\n$t" + ChatColor.STRIKETHROUGH
+                + "-----------------------------------------------");
     }
 
-    protected static String getSuite() {
+    protected static String getSuite(String locale) {
         String s = "";
         for(Plugin p : Bukkit.getServer().getPluginManager().getPlugins()) {
             if(p.getDescription().getDepend().contains(NAME)) {
@@ -190,7 +183,30 @@ public class Main extends JavaPlugin {
                         + "]";
             }
         }
-        return sc.format("$t" + ChatColor.STRIKETHROUGH + "----------------$hl Meep Plugin Suite $t"
+        return sc.format("$t" + ChatColor.STRIKETHROUGH + "----------------$hl "
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.suite.header") + " $t"
+                + ChatColor.STRIKETHROUGH + "----------------\n" + s.trim() + "\n$t" + ChatColor.STRIKETHROUGH
+                + "-------------------------------------------------");
+    }
+
+    protected static String getLocales(String locale) {
+        String s = "";
+        for(Plugin p : Bukkit.getServer().getPluginManager().getPlugins()) {
+            if(p.getName().equals(NAME) || p.getDescription().getDepend().contains(NAME)) {
+                s += "\n$t- " + (p.isEnabled() ? "$hl" : "$e") + p.getName() + "$t: ";
+                if(LocalizationUtils.getLocales(p.getName()) == null) {
+                    s += "$e" + LocalizationUtils.getTranslation(locale, "command.meepcore.locales.none");
+                } else {
+                    String ls = "";
+                    for(String l : LocalizationUtils.getLocales(p.getName())) {
+                        ls += ", $w" + (l.equals(locale) ? ChatColor.UNDERLINE : "") + l + "$t";
+                    }
+                    s += ls.substring(2);
+                }
+            }
+        }
+        return sc.format("$t" + ChatColor.STRIKETHROUGH + "----------------$hl "
+                + LocalizationUtils.getTranslation(locale, "command.meepcore.locales.header") + " $t"
                 + ChatColor.STRIKETHROUGH + "----------------\n" + s.trim() + "\n$t" + ChatColor.STRIKETHROUGH
                 + "-------------------------------------------------");
     }
