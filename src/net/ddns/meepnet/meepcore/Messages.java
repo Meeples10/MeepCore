@@ -1,8 +1,5 @@
 package net.ddns.meepnet.meepcore;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.bukkit.command.CommandSender;
 
 public class Messages {
@@ -338,13 +335,5 @@ public class Messages {
      */
     public static String translateUnformatted(CommandSender sender, String key) {
         return LocalizationUtils.getTranslation(LocalizationUtils.getLocale(sender), key);
-    }
-
-    public static void registerTranslation(String locale, String key, String value) {
-        LocalizationUtils.registerTranslation(locale, key, value);
-    }
-
-    public static void registerTranslations(File file) throws IOException {
-        LocalizationUtils.registerTranslations(file);
     }
 }
