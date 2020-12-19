@@ -130,8 +130,10 @@ public class LocalizationUtils {
             LocalizationUtils.registerTranslations(f);
             pluginLocales.get(plugin.getName()).add(f.getName().substring(0, f.getName().length() - 11));
         }
-        Main.log.info("Loaded " + translations.get(plugin.getName()).size() + " locale"
-                + (translations.get(plugin.getName()).size() == 1 ? "" : "s") + " for " + plugin.getName());
+        if(pluginLocales.get(plugin.getName()).size() > 0) {
+            Main.log.info("Loaded " + pluginLocales.get(plugin.getName()).size() + " locale"
+                    + (pluginLocales.get(plugin.getName()).size() == 1 ? "" : "s") + " for " + plugin.getName());
+        }
     }
 
     public static ArrayList<String> getLocales(String pluginName) {
