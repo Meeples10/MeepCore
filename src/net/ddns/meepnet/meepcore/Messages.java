@@ -15,21 +15,21 @@ public class Messages {
      * @deprecated Since 1.4.0
      */
     public static String noPermissionMessage() {
-        return Main.noPermissionMessage(LocalizationUtils.getFallbackLocale());
+        return Main.noPermissionMessage(I18n.getFallbackLocale());
     }
 
     /**
      * @deprecated Since 1.4.0
      */
     public static String formatError(String s) {
-        return Main.formatError(LocalizationUtils.getFallbackLocale(), s);
+        return Main.formatError(I18n.getFallbackLocale(), s);
     }
 
     /**
      * @deprecated Since 1.4.0
      */
     public static String formatWarning(String s) {
-        return Main.formatWarning(LocalizationUtils.getFallbackLocale(), s);
+        return Main.formatWarning(I18n.getFallbackLocale(), s);
     }
 
     /**
@@ -43,7 +43,7 @@ public class Messages {
      */
     @Deprecated
     public static String reloadMessage(String name, int state) {
-        return String.format(Main.getReloadMessage(LocalizationUtils.getFallbackLocale(), state), name);
+        return String.format(Main.getReloadMessage(I18n.getFallbackLocale(), state), name);
     }
 
     /**
@@ -53,7 +53,7 @@ public class Messages {
      * @see #reloadMessage(String, boolean)
      */
     public static String reloadAttempt(String name) {
-        return String.format(Main.getReloadMessage(LocalizationUtils.getFallbackLocale(), 0), name);
+        return String.format(Main.getReloadMessage(I18n.getFallbackLocale(), 0), name);
     }
 
     /**
@@ -66,7 +66,7 @@ public class Messages {
      * @see #reloadMessage(String)
      */
     public static String reloadMessage(String name, boolean success) {
-        return String.format(Main.getReloadMessage(LocalizationUtils.getFallbackLocale(), success ? 1 : 2), name);
+        return String.format(Main.getReloadMessage(I18n.getFallbackLocale(), success ? 1 : 2), name);
     }
 
     /**
@@ -76,14 +76,14 @@ public class Messages {
      * @return The formatted message
      */
     public static String usage(String usage) {
-        return Main.getUsage(LocalizationUtils.getFallbackLocale(), usage);
+        return Main.getUsage(I18n.getFallbackLocale(), usage);
     }
 
     /**
      * @deprecated Since 1.4.0
      */
     public static String invalidArguments() {
-        return Main.getInvalidArgumentsMessage(LocalizationUtils.getFallbackLocale());
+        return Main.getInvalidArgumentsMessage(I18n.getFallbackLocale());
     }
 
     /**
@@ -93,21 +93,21 @@ public class Messages {
      * @return The formatted message
      */
     public static String invalidArgument(Object value) {
-        return Main.getInvalidArgumentMessage(LocalizationUtils.getFallbackLocale(), value);
+        return Main.getInvalidArgumentMessage(I18n.getFallbackLocale(), value);
     }
 
     /**
      * @deprecated Since 1.4.0
      */
     public static String invalidArgumentCount() {
-        return Main.getInvalidArgumentCountMessage(LocalizationUtils.getFallbackLocale());
+        return Main.getInvalidArgumentCountMessage(I18n.getFallbackLocale());
     }
 
     /**
      * @deprecated Since 1.4.0
      */
     public static String getPlayersOnlyMessage() {
-        return Main.getPlayersOnlyMessage(LocalizationUtils.getFallbackLocale());
+        return Main.getPlayersOnlyMessage(I18n.getFallbackLocale());
     }
 
     public static String noPermissionMessage(String locale) {
@@ -174,15 +174,15 @@ public class Messages {
     }
 
     public static String noPermissionMessage(CommandSender sender) {
-        return Main.noPermissionMessage(LocalizationUtils.getLocale(sender));
+        return Main.noPermissionMessage(I18n.getLocale(sender));
     }
 
     public static String formatError(CommandSender sender, String s) {
-        return Main.formatError(LocalizationUtils.getLocale(sender), s);
+        return Main.formatError(I18n.getLocale(sender), s);
     }
 
     public static String formatWarning(CommandSender sender, String s) {
-        return Main.formatWarning(LocalizationUtils.getLocale(sender), s);
+        return Main.formatWarning(I18n.getLocale(sender), s);
     }
 
     /**
@@ -191,7 +191,7 @@ public class Messages {
      * @see #reloadMessage(String, boolean)
      */
     public static String reloadAttempt(CommandSender sender, String name) {
-        return String.format(Main.getReloadMessage(LocalizationUtils.getLocale(sender), 0), name);
+        return String.format(Main.getReloadMessage(I18n.getLocale(sender), 0), name);
     }
 
     /**
@@ -203,7 +203,7 @@ public class Messages {
      * @see #reloadMessage(String)
      */
     public static String reloadMessage(CommandSender sender, String name, boolean success) {
-        return String.format(Main.getReloadMessage(LocalizationUtils.getLocale(sender), success ? 1 : 2), name);
+        return String.format(Main.getReloadMessage(I18n.getLocale(sender), success ? 1 : 2), name);
     }
 
     /**
@@ -212,11 +212,11 @@ public class Messages {
      * @return The formatted message
      */
     public static String usage(CommandSender sender, String usage) {
-        return Main.getUsage(LocalizationUtils.getLocale(sender), usage);
+        return Main.getUsage(I18n.getLocale(sender), usage);
     }
 
     public static String invalidArguments(CommandSender sender) {
-        return Main.getInvalidArgumentsMessage(LocalizationUtils.getLocale(sender));
+        return Main.getInvalidArgumentsMessage(I18n.getLocale(sender));
     }
 
     /**
@@ -225,15 +225,15 @@ public class Messages {
      * @return The formatted message
      */
     public static String invalidArgument(CommandSender sender, Object value) {
-        return Main.getInvalidArgumentMessage(LocalizationUtils.getLocale(sender), value);
+        return Main.getInvalidArgumentMessage(I18n.getLocale(sender), value);
     }
 
     public static String invalidArgumentCount(CommandSender sender) {
-        return Main.getInvalidArgumentCountMessage(LocalizationUtils.getLocale(sender));
+        return Main.getInvalidArgumentCountMessage(I18n.getLocale(sender));
     }
 
     public static String getPlayersOnlyMessage(CommandSender sender) {
-        return Main.getPlayersOnlyMessage(LocalizationUtils.getLocale(sender));
+        return Main.getPlayersOnlyMessage(I18n.getLocale(sender));
     }
 
     /**
@@ -303,7 +303,7 @@ public class Messages {
      * @return The raw translation string with no formatting applied
      */
     public static String translateUnformatted(String locale, String key) {
-        return LocalizationUtils.getTranslation(locale, key);
+        return I18n.getTranslation(locale, key);
     }
 
     /**
@@ -313,7 +313,7 @@ public class Messages {
      * @see #format(String)
      */
     public static String translate(CommandSender sender, String key) {
-        return LocalizationUtils.getTranslation(LocalizationUtils.getLocale(sender), key);
+        return I18n.getTranslation(I18n.getLocale(sender), key);
     }
 
     /**

@@ -6,4 +6,4 @@ color-scheme: 0
 
 # If a language file is not found for a player's locale,
 # the plugin will fall back to this language
-fallback-locale: en_US
+fallback-locale: en_us

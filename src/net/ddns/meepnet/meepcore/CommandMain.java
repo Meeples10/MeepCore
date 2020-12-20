@@ -17,18 +17,18 @@ public class CommandMain extends MeepCommand {
                     sender.sendMessage(Messages.reloadAttempt(sender, Main.NAME));
                     sender.sendMessage(Messages.reloadMessage(sender, Main.NAME, Main.loadConfig()));
                 } else if(args[0].equalsIgnoreCase("debug")) {
-                    sender.sendMessage(Main.getDebug(LocalizationUtils.getLocale(sender)));
+                    sender.sendMessage(Main.getDebug(I18n.getLocale(sender)));
                 } else if(args[0].equalsIgnoreCase("help")) {
-                    sender.sendMessage(Main.getHelp(LocalizationUtils.getLocale(sender)));
+                    sender.sendMessage(Main.getHelp(I18n.getLocale(sender)));
                 } else if(args[0].equalsIgnoreCase("suite")) {
-                    sender.sendMessage(Main.getSuite(LocalizationUtils.getLocale(sender)));
+                    sender.sendMessage(Main.getSuite(I18n.getLocale(sender)));
                 } else if(args[0].equalsIgnoreCase("locales")) {
-                    sender.sendMessage(Main.getLocales(LocalizationUtils.getLocale(sender)));
+                    sender.sendMessage(Main.getLocales(I18n.getLocale(sender)));
                 } else {
                     return false;
                 }
             } else {
-                sender.sendMessage(Main.getHelp(LocalizationUtils.getLocale(sender)));
+                sender.sendMessage(Main.getHelp(I18n.getLocale(sender)));
             }
         } else {
             sender.sendMessage(Messages.noPermissionMessage(sender));

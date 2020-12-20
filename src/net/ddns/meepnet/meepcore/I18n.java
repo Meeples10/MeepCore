@@ -17,7 +17,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class LocalizationUtils {
+public class I18n {
     private static String fallbackLocale = "en_US";
     private static HashMap<String, HashMap<String, String>> translations = new HashMap<String, HashMap<String, String>>();
 
@@ -27,7 +27,7 @@ public class LocalizationUtils {
         if(sender instanceof Player) {
             return ((Player) sender).getLocale();
         } else {
-            return LocalizationUtils.getFallbackLocale();
+            return I18n.getFallbackLocale();
         }
     }
 
@@ -36,7 +36,7 @@ public class LocalizationUtils {
     }
 
     public static void setFallbackLocale(String fallbackLocale) {
-        LocalizationUtils.fallbackLocale = fallbackLocale;
+        I18n.fallbackLocale = fallbackLocale;
     }
 
     /**
@@ -127,7 +127,7 @@ public class LocalizationUtils {
             jar.close();
         }
         for(File f : messageDir.listFiles()) {
-            LocalizationUtils.registerTranslations(f);
+            I18n.registerTranslations(f);
             pluginLocales.get(plugin.getName()).add(f.getName().substring(0, f.getName().length() - 11));
         }
         if(pluginLocales.get(plugin.getName()).size() > 0) {
