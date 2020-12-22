@@ -88,6 +88,18 @@ public class Main extends JavaPlugin {
             if(p.hasPermission(permission)) p.sendMessage(s);
         }
     }
+    
+    protected static void broadcastTranslated(String key) {
+        for(Player p : Bukkit.getServer().getOnlinePlayers()) {
+            p.sendMessage(Messages.translate(p, key));
+        }
+    }
+    
+    protected static void broadcastTranslated(String key, String permission) {
+        for(Player p : Bukkit.getServer().getOnlinePlayers()) {
+            if(p.hasPermission(permission)) p.sendMessage(Messages.translate(p, key));
+        }
+    }
 
     protected static String noPermissionMessage(String locale) {
         return formatError(locale, I18n.getTranslation(locale, "error.no-permission"));

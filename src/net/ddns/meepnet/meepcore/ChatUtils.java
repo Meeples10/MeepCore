@@ -24,6 +24,27 @@ public class ChatUtils {
     }
 
     /**
+     * @param s
+     *              The string to broadcast
+     * @see #broadcast(String, boolean)
+     */
+    public static void broadcastTranslated(String s) {
+        Main.broadcastTranslated(s);
+    }
+
+    /**
+     * @param s
+     *                       The string to broadcast
+     * @param permission
+     *                       Only players with this permission will receive the
+     *                       broadcast
+     * @see #broadcast(String, boolean)
+     */
+    public static void broadcastTranslated(String s, String permission) {
+        Main.broadcastTranslated(s, permission);
+    }
+
+    /**
      * @deprecated Since 1.2.3
      * @param s
      *                The string to broadcast
