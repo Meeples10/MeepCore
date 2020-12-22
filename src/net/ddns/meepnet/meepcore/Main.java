@@ -30,7 +30,7 @@ public class Main extends JavaPlugin {
         } catch(Exception e) {
             e.printStackTrace();
         }
-        this.getCommand("meepcore").setExecutor(new CommandMain("/meepcore"));
+        this.getCommand("meepcore").setExecutor(new CommandMain("command.meepcore.usage"));
     }
 
     public static boolean loadConfig() {
