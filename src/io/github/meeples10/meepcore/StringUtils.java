@@ -1,4 +1,4 @@
-package net.ddns.meepnet.meepcore;
+package io.github.meeples10.meepcore;
 
 public class StringUtils {
     /**
