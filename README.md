@@ -1,3 +1,3 @@
 # MeepCore
 
-Shared core for Meeples10's plugins.
+Shared code for Meeples10's plugins.
