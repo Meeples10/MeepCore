@@ -6,7 +6,7 @@
 	<artifactId>MeepCore</artifactId>
 	<version>1.4.0</version>
 	<name>MeepCore</name>
-	<description>API for Meeples10's plugins.</description>
+	<description>Shared code for Meeples10's plugins.</description>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
