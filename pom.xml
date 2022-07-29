@@ -6,7 +6,6 @@
 	<name>MeepCore</name>
 	<description>Shared code for Meeples10's plugins.</description>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
