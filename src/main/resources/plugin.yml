@@ -8,3 +8,8 @@ commands:
   meepcore:
     description: Base command for MeepCore
     usage: /meepcore
+    permission: meepcore.use
+permissions:
+  meepcore.use:
+    description: Allows access to /meepcore
+    default: op
