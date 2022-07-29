@@ -1,18 +1,8 @@
 name: Publish package to GitHub Packages
 on:
   release:
-    types: [created]
+    types: [published, created]
   workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'     
-        required: true
-        default: 'warning' 
-        type: choice
-        options:
-        - info
-        - warning
-        - debug
 jobs:
   publish:
     runs-on: ubuntu-latest 
