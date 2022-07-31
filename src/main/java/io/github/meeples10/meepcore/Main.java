@@ -88,13 +88,13 @@ public class Main extends JavaPlugin {
             if(p.hasPermission(permission)) p.sendMessage(s);
         }
     }
-    
+
     protected static void broadcastTranslated(String key) {
         for(Player p : Bukkit.getServer().getOnlinePlayers()) {
             p.sendMessage(Messages.translate(p, key));
         }
     }
-    
+
     protected static void broadcastTranslated(String key, String permission) {
         for(Player p : Bukkit.getServer().getOnlinePlayers()) {
             if(p.hasPermission(permission)) p.sendMessage(Messages.translate(p, key));
@@ -116,11 +116,9 @@ public class Main extends JavaPlugin {
     protected static String getReloadMessage(String locale, int i) {
         switch(i) {
         case 0:
-            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] "
-                    + I18n.getTranslation(locale, "reload.attempt");
+            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] " + I18n.getTranslation(locale, "reload.attempt");
         case 1:
-            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] "
-                    + I18n.getTranslation(locale, "reload.success");
+            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] " + I18n.getTranslation(locale, "reload.success");
         default:
             return sc.t() + "[" + sc.error() + "%s" + sc.t() + "] " + sc.errorText()
                     + I18n.getTranslation(locale, "reload.failure");
@@ -136,8 +134,7 @@ public class Main extends JavaPlugin {
     }
 
     protected static String getInvalidArgumentMessage(String locale, Object o) {
-        return formatError(locale,
-                String.format(I18n.getTranslation(locale, "error.arguments.invalid"), o));
+        return formatError(locale, String.format(I18n.getTranslation(locale, "error.arguments.invalid"), o));
     }
 
     protected static String getInvalidArgumentCountMessage(String locale) {
@@ -153,38 +150,30 @@ public class Main extends JavaPlugin {
     }
 
     protected static String getHelp(String locale) {
-        return sc.format("$t" + ChatColor.STRIKETHROUGH + "-----------$hl" + " "
-                + I18n.getTranslation(locale, "command.meepcore.help.header") + " $t"
-                + ChatColor.STRIKETHROUGH + "-------------\n$hl" + "/meepcore reload$t" + ": "
-                + I18n.getTranslation(locale, "command.meepcore.help.reload") + "\n$hl"
-                + "/meepcore debug$t" + ": " + I18n.getTranslation(locale, "command.meepcore.help.debug")
-                + "\n$hl" + "/meepcore suite$t" + ": "
-                + I18n.getTranslation(locale, "command.meepcore.help.suite") + "\n$hl"
-                + "/meepcore locales$t" + ": "
-                + I18n.getTranslation(locale, "command.meepcore.help.locales") + "\n$hl"
-                + "/meepcore help$t" + ": " + I18n.getTranslation(locale, "command.meepcore.help.help")
-                + "\n$t" + ChatColor.STRIKETHROUGH + "-------------------------------------");
+        return Messages.section(I18n.getTranslation(locale, "command.meepcore.help.header"),
+                "/meepcore reload$t" + ": " + I18n.getTranslation(locale, "command.meepcore.help.reload") + "\n$hl"
+                        + "/meepcore debug$t" + ": " + I18n.getTranslation(locale, "command.meepcore.help.debug")
+                        + "\n$hl" + "/meepcore suite$t" + ": "
+                        + I18n.getTranslation(locale, "command.meepcore.help.suite") + "\n$hl" + "/meepcore locales$t"
+                        + ": " + I18n.getTranslation(locale, "command.meepcore.help.locales") + "\n$hl"
+                        + "/meepcore help$t" + ": " + I18n.getTranslation(locale, "command.meepcore.help.help"));
     }
 
     protected static String getDebug(String locale) {
-        return sc.format("$t" + ChatColor.STRIKETHROUGH + "--------------------$hl" + " "
-                + I18n.getTranslation(locale, "command.meepcore.debug.header") + " $t"
-                + ChatColor.STRIKETHROUGH + "--------------------\n$t"
-                + I18n.getTranslation(locale, "command.meepcore.debug.color-scheme") + ": $hl"
-                + sc.getName() + "\n$t"
-                + I18n.getTranslation(locale, "command.meepcore.debug.fallback-locale") + ": $hl"
-                + I18n.getFallbackLocale() + "\n$t" + "No permission message: \n> "
-                + noPermissionMessage(locale) + "\n$t" + "Error message: \n> " + formatError(locale, "%s") + "\n$t"
-                + "Warning message: \n> " + formatWarning(locale, "%s") + "\n$t" + "Usage message: \n> "
-                + getUsage(locale, "%s") + "\n$t" + "Invalid arguments message: \n> "
-                + getInvalidArgumentsMessage(locale) + "\n$t" + "Invalid argument message: \n> "
-                + getInvalidArgumentMessage(locale, "%s") + "\n$t" + "Invalid argument count message: \n> "
-                + getInvalidArgumentCountMessage(locale) + "\n$t" + "Players only message: \n> "
-                + getPlayersOnlyMessage(locale) + "\n$t" + "Reload message 1: \n> " + getReloadMessage(locale, 0)
-                + "\n$t" + "Reload message 2: \n> " + getReloadMessage(locale, 1) + "\n$t" + "Reload message 3: \n> "
-                + getReloadMessage(locale, 2) + "\n$t" + "Missing translation: \n> "
-                + I18n.getTranslation(locale, "missing-translation") + "\n$t" + ChatColor.STRIKETHROUGH
-                + "-----------------------------------------------");
+        return Messages.section(I18n.getTranslation(locale, "command.meepcore.debug.header"),
+                I18n.getTranslation(locale, "command.meepcore.debug.color-scheme") + ": $hl" + sc.getName() + "\n$t"
+                        + I18n.getTranslation(locale, "command.meepcore.debug.fallback-locale") + ": $hl"
+                        + I18n.getFallbackLocale() + "\n$t" + "No permission message: \n> "
+                        + noPermissionMessage(locale) + "\n$t" + "Error message: \n> " + formatError(locale, "%s")
+                        + "\n$t" + "Warning message: \n> " + formatWarning(locale, "%s") + "\n$t"
+                        + "Usage message: \n> " + getUsage(locale, "%s") + "\n$t" + "Invalid arguments message: \n> "
+                        + getInvalidArgumentsMessage(locale) + "\n$t" + "Invalid argument message: \n> "
+                        + getInvalidArgumentMessage(locale, "%s") + "\n$t" + "Invalid argument count message: \n> "
+                        + getInvalidArgumentCountMessage(locale) + "\n$t" + "Players only message: \n> "
+                        + getPlayersOnlyMessage(locale) + "\n$t" + "Reload message 1: \n> "
+                        + getReloadMessage(locale, 0) + "\n$t" + "Reload message 2: \n> " + getReloadMessage(locale, 1)
+                        + "\n$t" + "Reload message 3: \n> " + getReloadMessage(locale, 2) + "\n$t"
+                        + "Missing translation: \n> " + I18n.getTranslation(locale, "missing-translation"));
     }
 
     protected static String getSuite(String locale) {
@@ -195,10 +184,7 @@ public class Main extends JavaPlugin {
                         + "]";
             }
         }
-        return sc.format("$t" + ChatColor.STRIKETHROUGH + "----------------$hl "
-                + I18n.getTranslation(locale, "command.meepcore.suite.header") + " $t"
-                + ChatColor.STRIKETHROUGH + "----------------\n" + s.trim() + "\n$t" + ChatColor.STRIKETHROUGH
-                + "-------------------------------------------------");
+        return Messages.section(I18n.getTranslation(locale, "command.meepcore.suite.header"), s.trim());
     }
 
     protected static String getLocales(String locale) {
@@ -217,9 +203,6 @@ public class Main extends JavaPlugin {
                 }
             }
         }
-        return sc.format("$t" + ChatColor.STRIKETHROUGH + "----------------$hl "
-                + I18n.getTranslation(locale, "command.meepcore.locales.header") + " $t"
-                + ChatColor.STRIKETHROUGH + "----------------\n" + s.trim() + "\n$t" + ChatColor.STRIKETHROUGH
-                + "-------------------------------------------------");
+        return Messages.section(I18n.getTranslation(locale, "command.meepcore.locales.header"), s.trim());
     }
 }

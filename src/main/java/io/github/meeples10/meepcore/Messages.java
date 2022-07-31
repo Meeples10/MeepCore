@@ -1,6 +1,10 @@
 package io.github.meeples10.meepcore;
 
+import java.util.Arrays;
+
 import org.bukkit.command.CommandSender;
+
+import net.md_5.bungee.api.ChatColor;
 
 public class Messages {
 
@@ -326,5 +330,70 @@ public class Messages {
      */
     public static String translate(CommandSender sender, String key, Object... args) {
         return String.format(translate(sender, key), args);
+    }
+
+    /**
+     * @see #section(String, String)
+     */
+    public static String header(String title, char c, int width) {
+        int remainingWidth = width - (title.length() + 2);
+        if(remainingWidth > 0) {
+            StringBuilder sb = new StringBuilder();
+            int half = remainingWidth / 2;
+            int h2 = half * 2;
+            if(h2 != remainingWidth) {
+                half += h2 < remainingWidth ? 1 : -1;
+            }
+            sb.append("$t");
+            sb.append(ChatColor.STRIKETHROUGH);
+            sb.append(footer(c, half));
+            sb.append("$hl ");
+            sb.append(title);
+            sb.append(" $t");
+            sb.append(ChatColor.STRIKETHROUGH);
+            sb.append(footer(c, half));
+            sb.append("$t");
+            return sb.toString();
+        } else {
+            return format("$hl" + title + "$t");
+        }
+    }
+
+    /**
+     * @see #section(String, String)
+     * @see StringUtils#multiply(String, int)
+     */
+    public static String footer(char c, int width) {
+        char[] array = new char[width];
+        Arrays.fill(array, c);
+        return new String(array);
+    }
+
+    public static String section(String title, char c, int width, String content) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(header(title, c, width));
+        sb.append("\n");
+        sb.append(format(content));
+        sb.append("\n$t");
+        sb.append(footer(c, width));
+        sb.append("$t");
+        return sb.toString();
+    }
+
+    /**
+     * Returns a string with the following format: <br>
+     * 
+     * <pre>
+     * -------------------- title ---------------------
+     * content
+     * ------------------------------------------------
+     * </pre>
+     * 
+     * <br>
+     * 
+     * <tt>content</tt> will be formatted according to {@link #format(String)}
+     */
+    public static String section(String title, String content) {
+        return section(title, '-', 48, content);
     }
 }

@@ -39,6 +39,7 @@ public class StringUtils {
      * @param amount
      *            The amount of times to duplicate the string
      * @return The input string duplicated the specified amount of times
+     * @see Messages#footer(char, int)
      */
     public static String multiply(String s, int amount) {
         String out = s;
