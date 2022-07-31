@@ -4,6 +4,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
+/**
+ * @deprecated Since 1.4.2
+ * @see MCommand
+ */
 public abstract class MeepCommand implements CommandExecutor {
     private String usageKey;
 
@@ -26,10 +30,16 @@ public abstract class MeepCommand implements CommandExecutor {
         return usageKey;
     }
 
-    public abstract boolean run(CommandSender sender, Command cmd, String label, String[] args);
+    /**
+     * @deprecated
+     * @see MCommand#run(CommandSender, Command, String, String[], String)
+     */
+    public boolean run(CommandSender sender, Command cmd, String label, String[] args) {
+        return true;
+    }
 
     @Override
-    public final boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(!run(sender, cmd, label, args)) {
             sender.sendMessage(getUsage(sender));
         }

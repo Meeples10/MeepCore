@@ -177,22 +177,36 @@ public final class Messages {
         return Main.getPlayersOnlyMessage(locale);
     }
 
+    /**
+     * @deprecated Since 1.4.2
+     * @see #noPermissionMessage(String)
+     */
     public static String noPermissionMessage(CommandSender sender) {
-        return Main.noPermissionMessage(I18n.getLocale(sender));
+        return noPermissionMessage(I18n.getLocale(sender));
     }
 
+    /**
+     * @deprecated Since 1.4.2
+     * @see #formatError(String, String)
+     */
     public static String formatError(CommandSender sender, String s) {
-        return Main.formatError(I18n.getLocale(sender), s);
+        return formatError(I18n.getLocale(sender), s);
     }
 
+    /**
+     * @deprecated Since 1.4.2
+     * @see #formatWarning(String, String)
+     */
     public static String formatWarning(CommandSender sender, String s) {
-        return Main.formatWarning(I18n.getLocale(sender), s);
+        return formatWarning(I18n.getLocale(sender), s);
     }
 
     /**
      * @param name
      *                 The name of the plugin
      * @see #reloadMessage(String, boolean)
+     * @deprecated Since 1.4.2
+     * @see #reloadMessage(String, String)
      */
     public static String reloadAttempt(CommandSender sender, String name) {
         return String.format(Main.getReloadMessage(I18n.getLocale(sender), 0), name);
@@ -205,6 +219,8 @@ public final class Messages {
      *                    The success state of the reload method
      * @return The formatted message
      * @see #reloadMessage(String)
+     * @deprecated Since 1.4.2
+     * @see #reloadMessage(String, String, boolean)
      */
     public static String reloadMessage(CommandSender sender, String name, boolean success) {
         return String.format(Main.getReloadMessage(I18n.getLocale(sender), success ? 1 : 2), name);
@@ -214,11 +230,17 @@ public final class Messages {
      * @param usage
      *                  The usage of the command
      * @return The formatted message
+     * @deprecated Since 1.4.2
+     * @see #usage(String, String)
      */
     public static String usage(CommandSender sender, String usage) {
         return Main.getUsage(I18n.getLocale(sender), usage);
     }
 
+    /**
+     * @deprecated Since 1.4.2
+     * @see #invalidArguments(String)
+     */
     public static String invalidArguments(CommandSender sender) {
         return Main.getInvalidArgumentsMessage(I18n.getLocale(sender));
     }
@@ -227,15 +249,25 @@ public final class Messages {
      * @param value
      *                  The invalid argument
      * @return The formatted message
+     * @deprecated Since 1.4.2
+     * @see #invalidArgument(String, Object)
      */
     public static String invalidArgument(CommandSender sender, Object value) {
         return Main.getInvalidArgumentMessage(I18n.getLocale(sender), value);
     }
 
+    /**
+     * @deprecated Since 1.4.2
+     * @see #invalidArgumentCount(String)
+     */
     public static String invalidArgumentCount(CommandSender sender) {
         return Main.getInvalidArgumentCountMessage(I18n.getLocale(sender));
     }
 
+    /**
+     * @deprecated Since 1.4.2
+     * @see #getPlayersOnlyMessage(String)
+     */
     public static String getPlayersOnlyMessage(CommandSender sender) {
         return Main.getPlayersOnlyMessage(I18n.getLocale(sender));
     }
@@ -315,6 +347,8 @@ public final class Messages {
      *                The translation key
      * @return The translated string
      * @see #format(String)
+     * @deprecated Since 1.4.2
+     * @see #translate(String, String)
      */
     public static String translate(CommandSender sender, String key) {
         return I18n.get(I18n.getLocale(sender), key);
@@ -327,6 +361,8 @@ public final class Messages {
      *                 The objects to format the string with
      * @return The translated and formatted string
      * @see #format(String, Object...)
+     * @deprecated Since 1.4.2
+     * @see #translate(String, String, Object...)
      */
     public static String translate(CommandSender sender, String key, Object... args) {
         return String.format(translate(sender, key), args);
