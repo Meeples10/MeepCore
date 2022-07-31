@@ -1,9 +1,9 @@
 package io.github.meeples10.meepcore;
 
-public class StringUtils {
+public final class StringUtils {
     /**
      * @param input
-     *            The input string
+     *                  The input string
      * @return The input string with the first letter capitalized
      */
     public static String capitalize(String input) {
@@ -12,9 +12,9 @@ public class StringUtils {
 
     /**
      * @param input
-     *            The input string
+     *                        The input string
      * @param replacement
-     *            The string to replace special characters with
+     *                        The string to replace special characters with
      * @return The input string with all non-alphanumeric characters replaced with
      *         the replacement string
      * @see #removeSpecial(String)
@@ -25,7 +25,7 @@ public class StringUtils {
 
     /**
      * @param input
-     *            The input string
+     *                  The input string
      * @return The input string without non-alphanumeric characters
      * @see #replaceSpecial(String, String)
      */
@@ -35,9 +35,9 @@ public class StringUtils {
 
     /**
      * @param s
-     *            The input string
+     *                   The input string
      * @param amount
-     *            The amount of times to duplicate the string
+     *                   The amount of times to duplicate the string
      * @return The input string duplicated the specified amount of times
      * @see Messages#footer(char, int)
      */

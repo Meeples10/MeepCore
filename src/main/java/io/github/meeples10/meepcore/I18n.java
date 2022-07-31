@@ -17,11 +17,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class I18n {
+public final class I18n {
     private static String fallbackLocale = "en_US";
-    private static HashMap<String, HashMap<String, String>> translations = new HashMap<String, HashMap<String, String>>();
+    private static final HashMap<String, HashMap<String, String>> TRANSLATIONS = new HashMap<String, HashMap<String, String>>();
 
-    private static HashMap<String, ArrayList<String>> pluginLocales = new HashMap<String, ArrayList<String>>();
+    private static final HashMap<String, ArrayList<String>> PLUGIN_LOCALES = new HashMap<String, ArrayList<String>>();
 
     public static String getLocale(CommandSender sender) {
         if(sender instanceof Player) {
@@ -47,16 +47,16 @@ public class I18n {
      * @param value
      *                   The string to associate with the key
      */
-    public static void registerTranslation(String locale, String key, String value) {
+    private static void registerTranslation(String locale, String key, String value) {
         locale = locale.toLowerCase();
         key = key.toLowerCase();
-        if(!translations.containsKey(locale)) {
-            translations.put(locale, new HashMap<String, String>());
+        if(!TRANSLATIONS.containsKey(locale)) {
+            TRANSLATIONS.put(locale, new HashMap<String, String>());
         }
-        if(translations.get(locale).containsKey(key)) {
+        if(TRANSLATIONS.get(locale).containsKey(key)) {
             Main.log.warning("Duplicate translation key: " + key);
         }
-        translations.get(locale).put(key, value);
+        TRANSLATIONS.get(locale).put(key, value);
     }
 
     /**
@@ -64,7 +64,7 @@ public class I18n {
      *                 File containing translation keys and values
      * @throws IOException
      */
-    public static void registerTranslations(File file) throws IOException {
+    private static void registerTranslations(File file) throws IOException {
         String locale = file.getName().substring(0, file.getName().length() - 11);
         for(String line : FileUtils.read(file)) {
             if(line.startsWith("#") || line.isEmpty()) continue;
@@ -76,13 +76,13 @@ public class I18n {
     public static String get(String locale, String key) {
         locale = locale.toLowerCase();
         key = key.toLowerCase();
-        if(!translations.containsKey(locale)) {
+        if(!TRANSLATIONS.containsKey(locale)) {
             locale = fallbackLocale;
         }
-        if(translations.get(locale).containsKey(key)) {
-            return translations.get(locale).get(key);
+        if(TRANSLATIONS.get(locale).containsKey(key)) {
+            return TRANSLATIONS.get(locale).get(key);
         } else {
-            return translations.get(locale).get("missing-translation").replace("{{KEY}}", key);
+            return TRANSLATIONS.get(locale).get("missing-translation").replace("{{KEY}}", key);
         }
     }
 
@@ -99,7 +99,7 @@ public class I18n {
         if(!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdirs();
         }
-        pluginLocales.put(plugin.getName(), new ArrayList<String>());
+        PLUGIN_LOCALES.put(plugin.getName(), new ArrayList<String>());
         File messageDir = new File(plugin.getDataFolder(), "messages");
         if(!messageDir.exists()) {
             messageDir.mkdirs();
@@ -136,15 +136,15 @@ public class I18n {
         }
         for(File f : messageDir.listFiles()) {
             I18n.registerTranslations(f);
-            pluginLocales.get(plugin.getName()).add(f.getName().substring(0, f.getName().length() - 11));
+            PLUGIN_LOCALES.get(plugin.getName()).add(f.getName().substring(0, f.getName().length() - 11));
         }
-        if(pluginLocales.get(plugin.getName()).size() > 0) {
-            Main.log.info("Loaded " + pluginLocales.get(plugin.getName()).size() + " locale"
-                    + (pluginLocales.get(plugin.getName()).size() == 1 ? "" : "s") + " for " + plugin.getName());
+        if(PLUGIN_LOCALES.get(plugin.getName()).size() > 0) {
+            Main.log.info("Loaded " + PLUGIN_LOCALES.get(plugin.getName()).size() + " locale"
+                    + (PLUGIN_LOCALES.get(plugin.getName()).size() == 1 ? "" : "s") + " for " + plugin.getName());
         }
     }
 
     public static ArrayList<String> getLocales(String pluginName) {
-        return pluginLocales.get(pluginName);
+        return PLUGIN_LOCALES.get(pluginName);
     }
 }

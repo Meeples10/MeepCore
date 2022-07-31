@@ -3,7 +3,6 @@ package io.github.meeples10.meepcore;
 import org.bukkit.ChatColor;
 
 public class ColorScheme {
-
     private String name;
     private ChatColor text, highlight, error, errorText, warning, warningText;
 
@@ -69,7 +68,7 @@ public class ColorScheme {
 
     /**
      * @param s
-     *            The string to format
+     *              The string to format
      * @return The string formatted with chat colors determined by the color
      *         scheme.<br>
      *         <strong>$t</strong>&nbsp;&nbsp;&nbsp;- text<br>

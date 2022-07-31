@@ -1,6 +1,6 @@
 package io.github.meeples10.meepcore;
 
-public class ChatUtils {
+public final class ChatUtils {
 
     /**
      * @param s

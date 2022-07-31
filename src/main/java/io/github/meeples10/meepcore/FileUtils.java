@@ -13,7 +13,7 @@ import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class FileUtils {
+public final class FileUtils {
     /**
      * @param file
      *                 The output file

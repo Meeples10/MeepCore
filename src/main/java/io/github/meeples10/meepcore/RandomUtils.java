@@ -2,12 +2,12 @@ package io.github.meeples10.meepcore;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class RandomUtils {
+public final class RandomUtils {
     /**
      * @param l
-     *            The lower bound
+     *              The lower bound
      * @param u
-     *            The upper bound
+     *              The upper bound
      * @return A random integer between l and u (inclusive)
      */
     public static int randInt(int l, int u) {
@@ -16,9 +16,9 @@ public class RandomUtils {
 
     /**
      * @param l
-     *            The lower bound
+     *              The lower bound
      * @param u
-     *            The upper bound
+     *              The upper bound
      * @return a random double between l and u (inclusive)
      */
     public static double randDouble(double l, double u) {
@@ -27,9 +27,9 @@ public class RandomUtils {
 
     /**
      * @param l
-     *            The lower bound
+     *              The lower bound
      * @param u
-     *            The upper bound
+     *              The upper bound
      * @return A random long between l and u (inclusive)
      */
     public static long randLong(long l, long u) {

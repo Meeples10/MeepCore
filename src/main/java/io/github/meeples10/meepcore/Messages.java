@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 
 import net.md_5.bungee.api.ChatColor;
 
-public class Messages {
+public final class Messages {
 
     /**
      * @return The plugin's current color scheme

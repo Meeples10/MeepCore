@@ -2,7 +2,7 @@ package io.github.meeples10.meepcore;
 
 import org.bukkit.ChatColor;
 
-class ColorSchemes {
+final class ColorSchemes {
     static final ColorScheme DEFAULT = new ColorScheme("DEFAULT", ChatColor.WHITE, ChatColor.GREEN, ChatColor.RED,
             ChatColor.WHITE, ChatColor.YELLOW, ChatColor.WHITE);
     /**
