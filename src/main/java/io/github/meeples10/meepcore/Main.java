@@ -102,47 +102,47 @@ public class Main extends JavaPlugin {
     }
 
     protected static String noPermissionMessage(String locale) {
-        return formatError(locale, I18n.getTranslation(locale, "error.no-permission"));
+        return formatError(locale, I18n.get(locale, "error.no-permission"));
     }
 
     protected static String formatError(String locale, String s) {
-        return sc.error() + I18n.getTranslation(locale, "error.prefix") + sc.errorText() + s;
+        return sc.error() + I18n.get(locale, "error.prefix") + sc.errorText() + s;
     }
 
     protected static String formatWarning(String locale, String s) {
-        return sc.warning() + I18n.getTranslation(locale, "warning.prefix") + sc.warningText() + s;
+        return sc.warning() + I18n.get(locale, "warning.prefix") + sc.warningText() + s;
     }
 
     protected static String getReloadMessage(String locale, int i) {
         switch(i) {
         case 0:
-            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] " + I18n.getTranslation(locale, "reload.attempt");
+            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] " + I18n.get(locale, "reload.attempt");
         case 1:
-            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] " + I18n.getTranslation(locale, "reload.success");
+            return sc.t() + "[" + sc.hl() + "%s" + sc.t() + "] " + I18n.get(locale, "reload.success");
         default:
             return sc.t() + "[" + sc.error() + "%s" + sc.t() + "] " + sc.errorText()
-                    + I18n.getTranslation(locale, "reload.failure");
+                    + I18n.get(locale, "reload.failure");
         }
     }
 
     protected static String getUsage(String locale, String usage) {
-        return sc.error() + I18n.getTranslation(locale, "usage.prefix") + sc.errorText() + usage;
+        return sc.error() + I18n.get(locale, "usage.prefix") + sc.errorText() + usage;
     }
 
     protected static String getInvalidArgumentsMessage(String locale) {
-        return formatError(locale, I18n.getTranslation(locale, "error.arguments.generic"));
+        return formatError(locale, I18n.get(locale, "error.arguments.generic"));
     }
 
     protected static String getInvalidArgumentMessage(String locale, Object o) {
-        return formatError(locale, String.format(I18n.getTranslation(locale, "error.arguments.invalid"), o));
+        return formatError(locale, String.format(I18n.get(locale, "error.arguments.invalid"), o));
     }
 
     protected static String getInvalidArgumentCountMessage(String locale) {
-        return formatError(locale, I18n.getTranslation(locale, "error.arguments.invalid-count"));
+        return formatError(locale, I18n.get(locale, "error.arguments.invalid-count"));
     }
 
     protected static String getPlayersOnlyMessage(String locale) {
-        return formatError(locale, I18n.getTranslation(locale, "error.players-only"));
+        return formatError(locale, I18n.get(locale, "error.players-only"));
     }
 
     protected static ColorScheme getColorScheme() {
@@ -150,19 +150,18 @@ public class Main extends JavaPlugin {
     }
 
     protected static String getHelp(String locale) {
-        return Messages.section(I18n.getTranslation(locale, "command.meepcore.help.header"),
-                "/meepcore reload$t" + ": " + I18n.getTranslation(locale, "command.meepcore.help.reload") + "\n$hl"
-                        + "/meepcore debug$t" + ": " + I18n.getTranslation(locale, "command.meepcore.help.debug")
-                        + "\n$hl" + "/meepcore suite$t" + ": "
-                        + I18n.getTranslation(locale, "command.meepcore.help.suite") + "\n$hl" + "/meepcore locales$t"
-                        + ": " + I18n.getTranslation(locale, "command.meepcore.help.locales") + "\n$hl"
-                        + "/meepcore help$t" + ": " + I18n.getTranslation(locale, "command.meepcore.help.help"));
+        return Messages.section(I18n.get(locale, "command.meepcore.help.header"),
+                "/meepcore reload$t" + ": " + I18n.get(locale, "command.meepcore.help.reload") + "\n$hl"
+                        + "/meepcore debug$t" + ": " + I18n.get(locale, "command.meepcore.help.debug") + "\n$hl"
+                        + "/meepcore suite$t" + ": " + I18n.get(locale, "command.meepcore.help.suite") + "\n$hl"
+                        + "/meepcore locales$t" + ": " + I18n.get(locale, "command.meepcore.help.locales") + "\n$hl"
+                        + "/meepcore help$t" + ": " + I18n.get(locale, "command.meepcore.help.help"));
     }
 
     protected static String getDebug(String locale) {
-        return Messages.section(I18n.getTranslation(locale, "command.meepcore.debug.header"),
-                I18n.getTranslation(locale, "command.meepcore.debug.color-scheme") + ": $hl" + sc.getName() + "\n$t"
-                        + I18n.getTranslation(locale, "command.meepcore.debug.fallback-locale") + ": $hl"
+        return Messages.section(I18n.get(locale, "command.meepcore.debug.header"),
+                I18n.get(locale, "command.meepcore.debug.color-scheme") + ": $hl" + sc.getName() + "\n$t"
+                        + I18n.get(locale, "command.meepcore.debug.fallback-locale") + ": $hl"
                         + I18n.getFallbackLocale() + "\n$t" + "No permission message: \n> "
                         + noPermissionMessage(locale) + "\n$t" + "Error message: \n> " + formatError(locale, "%s")
                         + "\n$t" + "Warning message: \n> " + formatWarning(locale, "%s") + "\n$t"
@@ -173,7 +172,7 @@ public class Main extends JavaPlugin {
                         + getPlayersOnlyMessage(locale) + "\n$t" + "Reload message 1: \n> "
                         + getReloadMessage(locale, 0) + "\n$t" + "Reload message 2: \n> " + getReloadMessage(locale, 1)
                         + "\n$t" + "Reload message 3: \n> " + getReloadMessage(locale, 2) + "\n$t"
-                        + "Missing translation: \n> " + I18n.getTranslation(locale, "missing-translation"));
+                        + "Missing translation: \n> " + I18n.get(locale, "missing-translation"));
     }
 
     protected static String getSuite(String locale) {
@@ -184,7 +183,7 @@ public class Main extends JavaPlugin {
                         + "]";
             }
         }
-        return Messages.section(I18n.getTranslation(locale, "command.meepcore.suite.header"), s.trim());
+        return Messages.section(I18n.get(locale, "command.meepcore.suite.header"), s.trim());
     }
 
     protected static String getLocales(String locale) {
@@ -193,7 +192,7 @@ public class Main extends JavaPlugin {
             if(p.getName().equals(NAME) || p.getDescription().getDepend().contains(NAME)) {
                 s += "\n$t- " + (p.isEnabled() ? "$hl" : "$e") + p.getName() + "$t: ";
                 if(I18n.getLocales(p.getName()) == null) {
-                    s += "$e" + I18n.getTranslation(locale, "command.meepcore.locales.none");
+                    s += "$e" + I18n.get(locale, "command.meepcore.locales.none");
                 } else {
                     String ls = "";
                     for(String l : I18n.getLocales(p.getName())) {
@@ -203,6 +202,6 @@ public class Main extends JavaPlugin {
                 }
             }
         }
-        return Messages.section(I18n.getTranslation(locale, "command.meepcore.locales.header"), s.trim());
+        return Messages.section(I18n.get(locale, "command.meepcore.locales.header"), s.trim());
     }
 }

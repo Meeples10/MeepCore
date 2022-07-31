@@ -73,7 +73,7 @@ public class I18n {
         }
     }
 
-    public static String getTranslation(String locale, String key) {
+    public static String get(String locale, String key) {
         locale = locale.toLowerCase();
         key = key.toLowerCase();
         if(!translations.containsKey(locale)) {
@@ -84,6 +84,14 @@ public class I18n {
         } else {
             return translations.get(locale).get("missing-translation").replace("{{KEY}}", key);
         }
+    }
+
+    /**
+     * @deprecated
+     * @see #get(String, String)
+     */
+    public static String getTranslation(String locale, String key) {
+        return get(locale, key);
     }
 
     public static void loadMessages(String pluginName) throws IOException, URISyntaxException {

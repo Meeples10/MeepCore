@@ -307,7 +307,7 @@ public class Messages {
      * @return The raw translation string with no formatting applied
      */
     public static String translateUnformatted(String locale, String key) {
-        return I18n.getTranslation(locale, key);
+        return I18n.get(locale, key);
     }
 
     /**
@@ -317,7 +317,7 @@ public class Messages {
      * @see #format(String)
      */
     public static String translate(CommandSender sender, String key) {
-        return I18n.getTranslation(I18n.getLocale(sender), key);
+        return I18n.get(I18n.getLocale(sender), key);
     }
 
     /**
