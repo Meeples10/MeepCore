@@ -25,7 +25,7 @@ public final class I18n {
 
     public static String getLocale(CommandSender sender) {
         if(sender instanceof Player) {
-            return ((Player) sender).getLocale();
+            return ((Player) sender).locale().toLanguageTag().toLowerCase().replace('-', '_');
         } else {
             return I18n.getFallbackLocale();
         }

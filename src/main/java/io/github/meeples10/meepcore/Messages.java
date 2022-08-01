@@ -382,12 +382,12 @@ public final class Messages {
             }
             sb.append("$t");
             sb.append(ChatColor.STRIKETHROUGH);
-            sb.append(footer(c, half));
+            sb.append(footer(c, half, true));
             sb.append("$hl ");
             sb.append(title);
             sb.append(" $t");
             sb.append(ChatColor.STRIKETHROUGH);
-            sb.append(footer(c, half));
+            sb.append(footer(c, half, true));
             sb.append("$t");
             return sb.toString();
         } else {
@@ -399,21 +399,25 @@ public final class Messages {
      * @see #section(String, String)
      * @see StringUtils#multiply(String, int)
      */
-    public static String footer(char c, int width) {
+    public static String footer(char c, int width, boolean strikethrough) {
         char[] array = new char[width];
         Arrays.fill(array, c);
-        return new String(array);
+        if(strikethrough) {
+            return ChatColor.STRIKETHROUGH + new String(array);
+        } else {
+            return new String(array);
+        }
     }
 
     public static String section(String title, char c, int width, String content) {
         StringBuilder sb = new StringBuilder();
         sb.append(header(title, c, width));
         sb.append("\n");
-        sb.append(format(content));
+        sb.append(content);
         sb.append("\n$t");
-        sb.append(footer(c, width));
+        sb.append(footer(c, width, true));
         sb.append("$t");
-        return sb.toString();
+        return format(sb.toString());
     }
 
     /**
